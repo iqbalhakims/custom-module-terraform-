@@ -127,7 +127,7 @@ resource "aws_route" "private_nat_gateway" {
     nat_gateway_id = aws_nat_gateway.main[count.index].id 
 }
 
-resource " aws_route_table_association "private"{
+resource " aws_route_table_association" "private"{
     count = length(var.private_subnets)
     subnet_id = aws_subnet.private[count.index].id
     route_table_id = var.single_nat_gateway ? aws_route_table.private[0].id : aws_route_table.private[count.index].id 
